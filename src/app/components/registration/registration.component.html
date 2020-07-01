@@ -1,0 +1,152 @@
+<h2>THis works</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form action="" [formGroup]="registrationForm">
+                <div class="row">
+                    <div class="col-md-2">
+                        Student Number
+                    </div>
+                         <div class="col-md-4">
+                         <input type="text" placeholder="Student Number" formControlName="StudentNumber">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        Student Name 
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" placeholder="Student Number" formControlName="Name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        Level
+                    </div>
+                    <div class="col-md-4">
+                         <input type="text" placeholder="Student Number" formControlName="Level">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                       Select Course  
+                    </div>
+                    <div class="col-md-4">
+                        <div class="btn-group">
+                            <!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select Course
+                            </button> -->
+                                <div >
+                                <a class="dropdown-item" href="#" *ngFor="let s of courses"  (click)="getCourseId(s.CourseId)">{{s.CourseName}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">Password</div>
+                        <div class="col-md-4">
+                        <input type="password" placeholder="Password" formControlName="Password">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">Confirm Password</div>
+                        <div class="col-md-4">
+                        <input type="password" placeholder="ConfirmPassword" formControlName="ConfirmPassword">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button" (click)="onFormSubmit()">Submit</button>      
+                        <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" >Reset</button>  
+                    </div>
+                
+            </form>
+        </div>
+        <div class="col-md-6">
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <tr ngclass="btn-primary">
+                    <th class="tlb2">Student Number</th>
+                    <th class="tlb2">Name</th>
+                    <th class="tlb2">Course</th>
+                    <th class="tlb2">Level</th>
+                    <th class="tlb2">Actions</th>
+                </tr>
+                <tr *ngFor="let student of students">
+                    <td class="tlb2">{{student.StudentNumber}}</td>
+                    <td class="tlb2">{{student.Name}}</td>
+                    <td class="tlb2">{{student.Course.CourseName}}</td>
+                    <td class="tlb2">{{student.Level}}</td>
+                    <td class="tlb2"><button>Edit</button></td>
+                    <td class="tlb2"><button>Delete</button></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div  class="alert alert-danger"></div>
+<h2>Register</h2>
+<form [formGroup]="registrationForm" >
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" formControlName="firstName" class="form-control"  />
+        <div  class="invalid-feedback">
+            <div >First Name is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" formControlName="lastName" class="form-control"  />
+        <div  class="invalid-feedback">
+            <div >Last Name is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" class="form-control"  />
+        <div  class="invalid-feedback">
+            <div >Username is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control"  />
+        <div  class="invalid-feedback">
+            <div >Password is required</div>
+            <div >Password must be at least 6 characters</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button  class="btn btn-primary">
+            <span  class="spinner-border spinner-border-sm mr-1"></span>
+            Register
+        </button>
+        <a routerLink="/login" class="btn btn-link">Cancel</a>
+    </div>
+</form> -->
