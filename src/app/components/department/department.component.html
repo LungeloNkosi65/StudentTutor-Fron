@@ -1,1 +1,34 @@
-<p>department works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <form action="" [formGroup]="departmentForm">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="Department Name">Department Name</label>
+                         <!-- <input type="text" placeholder="Department Name" formControlName="deparmentName"> -->
+                    </div>
+                    <div class="colo-md-8" >
+                         <input type="text" placeholder="Department Name"  formControlName="departmentName">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="Faculty">Faculty</label>
+                         <!-- <input type="text" placeholder="Department Name" formControlName="deparmentName"> -->
+                    </div>
+                    <div class="colo-md-8">
+                        <div class="btn-group">
+                                <div >
+                                <a class="dropdown-item" style="background-color: wheat !important;" href="#" *ngFor="let f of facultyData" (click)="getFacultyId(f.FacultyId)" >{{f.FacultyName}}</a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button" (click)="onFormSubmit()">Submit</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Department } from 'src/app/models/Department';
+import { DepartmentService } from 'src/app/services/department.service';
+import { Faculty } from '../../models/Faculty';
+import { FacultyService } from 'src/app/services/faculty.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-department',
@@ -7,9 +12,72 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepartmentComponent implements OnInit {
 
-  constructor() { }
+
+  departments: Department[]=[];
+  department: Department;
+  facultyData: Faculty[];
+  facultyId:number;
+  departmentForm: any;
+
+  constructor(private departmenService: DepartmentService, private formBuilder: FormBuilder, private facultyService: FacultyService) {
+    this.getFaculties();
+  }
 
   ngOnInit(): void {
+    this.departmentForm=this.formBuilder.group({
+      departmentName:['',[Validators.required]]
+    });
   }
+
+  getDepartments() {
+    this.departmenService.getDepartment().subscribe((data: any) => {
+      this.departments = data;
+      console.log('Retreived Departments', this.departments);
+    });
+  }
+
+  addDepartment(department: Department) {
+    if (department != undefined || department !== null) {
+      department.DepartmentId=this.departments.length+1;
+      console.log('Department Record', department);
+      this.departmenService.addDepartment(department).subscribe(() => {
+        this.getDepartments();
+      });
+    }
+  }
+
+  deleteDepartment(departmentId: number) {
+    this.departmenService.deleteDepartment(departmentId).subscribe(() => {
+      this.getDepartments();
+    });
+  }
+
+
+  populateForm(departmentId: number) {
+    this.departmenService.getSingleDepartment(departmentId).subscribe((data: any) => {
+      this.department = data;
+    });
+  }
+  getFaculties() {
+    this.facultyService.getFaculties().subscribe((data: any) => {
+      this.facultyData = data;
+      console.log('retreived Faculties', this.facultyData);
+     });
+  }
+
+  getFacultyId(facultyId:number) {
+    this.facultyId=facultyId;
+    console.log('FAcultyID',this.facultyId)
+    return this.facultyId;
+  }
+  onFormSubmit(){
+    const departData=this.departmentForm.value;
+    console.log('Form departData',this.facultyData);
+    this.addDepartment(departData);
+    return departData;
+  }
+
+
+  
 
 }
