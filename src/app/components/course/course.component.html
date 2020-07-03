@@ -1,1 +1,18 @@
-<p>course works!</p>
+<div class="container">
+    <h2>Hellow Im Courses</h2>
+    <table>
+        <thead></thead>
+        <tbody>
+            <tr>
+                <th>Course Name</th>
+                <th>Department Name</th>
+            </tr>
+            <tr *ngFor="let course of courses">
+                <td >
+                    {{course.CourseName}}
+                </td>
+                <td>{{course.Department.DepartmentName}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

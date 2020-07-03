@@ -18,6 +18,7 @@ export class DepartmentComponent implements OnInit {
   facultyData: Faculty[];
   facultyId:number;
   departmentForm: any;
+  virtualFaculty:Faculty;
 
   constructor(private departmenService: DepartmentService, private formBuilder: FormBuilder, private facultyService: FacultyService) {
     this.getFaculties();
@@ -38,7 +39,9 @@ export class DepartmentComponent implements OnInit {
 
   addDepartment(department: Department) {
     if (department != undefined || department !== null) {
-      department.DepartmentId=this.departments.length+1;
+      // department.DepartmentId=this.departments.length+6; NAWE MASIMBAKHO
+      department.FacultyId=this.facultyId;
+      // department.Faculty=this.virtualFaculty; // DO NOT EVER PUT THIS KWI DB LEAVE IT NULL
       console.log('Department Record', department);
       this.departmenService.addDepartment(department).subscribe(() => {
         this.getDepartments();
@@ -67,6 +70,9 @@ export class DepartmentComponent implements OnInit {
 
   getFacultyId(facultyId:number) {
     this.facultyId=facultyId;
+    this.facultyService.getSingleFaculty(facultyId).subscribe((data:any)=>{
+      this.virtualFaculty=data;
+    })
     console.log('FAcultyID',this.facultyId)
     return this.facultyId;
   }

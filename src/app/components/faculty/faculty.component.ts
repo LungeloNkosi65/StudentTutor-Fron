@@ -14,13 +14,13 @@ export class FacultyComponent implements OnInit {
   constructor(private facultyService:FacultyService, private formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {
-    
+    this.getFaculties();
   }
 
   getFaculties(){
     this.facultyService.getFaculties().subscribe((data:any)=>{
       this.faculties=data;
-    })
+    });
   }
 
 }
