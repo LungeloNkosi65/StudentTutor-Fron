@@ -20,6 +20,7 @@ export class FacultyComponent implements OnInit {
   getFaculties(){
     this.facultyService.getFaculties().subscribe((data:any)=>{
       this.faculties=data;
+      console.log('Db.. F', this.faculties) 
     });
   }
 
