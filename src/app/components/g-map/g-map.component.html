@@ -1,0 +1,12 @@
+<h2>Hellow Im Google Map And I Work</h2>
+<h1>Get Directions</h1>
+
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction>
+</agm-map>
+ 
+<h5>Address: {{sourceAddress}}</h5>
+<div>Latitude: {{sourceLatitude}}</div>
+<div>Longitude: {{sourceLongitude}}</div>
+
+<button type="button" (click)="getDirection()">Get</button>

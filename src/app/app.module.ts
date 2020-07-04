@@ -15,6 +15,9 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment'
+import {AgmCoreModule} from '@agm/core';
+import {AgmDirectionModule} from 'agm-direction';
+import { GMapComponent } from './components/g-map/g-map.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { environment } from '../environments/environment'
     AlertComponent,
     DepartmentComponent,
     CourseComponent,
-    CourseListComponent
+    CourseListComponent,
+    GMapComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,12 @@ import { environment } from '../environments/environment'
         strictActionImmutability: true,
       }
     }),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    AgmCoreModule.forRoot({ //@agm/core
+      apiKey: 'AIzaSyDdl92Jhloy3TczguBxXwqD5AH3m2oCNY0',
+      libraries: ["places"]
+    }),
+    AgmDirectionModule //agm-direction
   ],
   providers: [],
   bootstrap: [AppComponent]
